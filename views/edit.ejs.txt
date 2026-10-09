@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Berita</title>
+  <style>
+    body { font-family: sans-serif; max-width: 800px; margin: 20px auto; padding: 0 15px; }
+    form { background: #f4f4f4; padding: 15px; border-radius: 6px; }
+    input, textarea { width: 100%; padding: 8px; margin: 8px 0 15px; box-sizing: border-box; }
+    button { background: #0070f3; color: white; border: none; padding: 10px 15px; cursor: pointer; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <h1>Edit Berita</h1>
+  <form action="/dashboard/edit/<%= berita.id %>" method="POST">
+    <label>Judul Berita</label>
+    <input type="text" name="judul" value="<%= berita.judul %>" required>
+    
+    <label>Konten Berita</label>
+    <textarea name="konten" rows="5" required><%= berita.konten %></textarea>
+    
+    <button type="submit">Simpan Perubahan</button>
+    <a href="/dashboard" style="margin-left: 10px;">Batal</a>
+  </form>
+</body>
+</html>

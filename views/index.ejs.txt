@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Berita</title>
+  <style>
+    body { font-family: sans-serif; max-width: 800px; margin: 20px auto; padding: 0 15px; line-height: 1.6; }
+    header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #ccc; padding-bottom: 10px; }
+    article { border: 1px solid #ddd; padding: 15px; margin-top: 15px; border-radius: 6px; }
+    .date { color: #666; font-size: 0.85em; }
+    a.btn { background: #0070f3; color: white; padding: 8px 12px; text-decoration: none; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Portal Berita Terbaru</h1>
+    <a href="/dashboard" class="btn">Masuk Dashboard CMS</a>
+  </header>
+  <main>
+    <% if (beritaList.length === 0) { %>
+      <p>Belum ada berita yang diterbitkan.</p>
+    <% } %>
+    <% beritaList.forEach(berita => { %>
+      <article>
+        <h2><%= berita.judul %></h2>
+        <p class="date">Dipublikasikan pada: <%= berita.tanggal %></p>
+        <p><%= berita.konten %></p>
+      </article>
+    <% }) %>
+  </main>
+</body>
+</html>

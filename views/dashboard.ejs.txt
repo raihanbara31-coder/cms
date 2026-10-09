@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard CMS</title>
+  <style>
+    body { font-family: sans-serif; max-width: 800px; margin: 20px auto; padding: 0 15px; }
+    form { background: #f4f4f4; padding: 15px; border-radius: 6px; margin-bottom: 20px; }
+    input, textarea { width: 100%; padding: 8px; margin: 8px 0 15px; box-sizing: border-box; }
+    button { background: #28a745; color: white; border: none; padding: 10px 15px; cursor: pointer; border-radius: 4px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+    .actions { display: flex; gap: 5px; }
+    .btn-edit { background: #ffc107; color: black; padding: 5px 10px; text-decoration: none; border-radius: 3px; font-size: 0.9em; }
+    .btn-delete { background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <p><a href="/">&larr; Kembali ke Halaman Utama</a></p>
+  <h1>Dashboard CMS - Kelola Berita</h1>
+
+  <form action="/dashboard/tambah" method="POST">
+    <h3>Tambah Berita Baru</h3>
+    <label>Judul Berita</label>
+    <input type="text" name="judul" required placeholder="Masukkan judul...">
+    
+    <label>Konten Berita</label>
+    <textarea name="konten" rows="5" required placeholder="Tulis isi berita di sini..."></textarea>
+    
+    <button type="submit">Terbitkan Berita</button>
+  </form>
+
+  <h3>Daftar Berita</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Judul</th>
+        <th>Tanggal</th>
+        <th>Aksi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% beritaList.forEach(berita => { %>
+        <tr>
+          <td><%= berita.judul %></td>
+          <td><%= berita.tanggal %></td>
+          <td class="actions">
+            <a href="/dashboard/edit/<%= berita.id %>" class="btn-edit">Edit</a>
+            <form action="/dashboard/hapus/<%= berita.id %>" method="POST" style="margin:0; padding:0; background:none;">
+              <button type="submit" class="btn-delete" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</body>
+</html>
